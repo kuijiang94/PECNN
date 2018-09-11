@@ -35,7 +35,7 @@ def weight_loader(model_weights=None, tfvars=None):
     return tf.group(*loaders)
 
 
-class VIDEOSR(object):
+class SR(object):
     def __init__(self):
         self.num_frames = 1
         self.num_block = 10
@@ -291,7 +291,7 @@ class VIDEOSR(object):
                 train_op = tf.train.AdamOptimizer(lr).minimize(loss, var_list=var_list, global_step=global_step)
             return train_op
 
-        """Train video sr network"""
+        """Train sr network"""
         global_step = tf.Variable(initial_value=0, trainable=False)
         self.global_step = global_step
 
@@ -444,7 +444,7 @@ class VIDEOSR(object):
 
 
 def main(_):
-    model = VIDEOSR()
+    model = SR()
     #model.train()
     #model.evaluation()
     model.test('.\\pecnn\\data\\test12\\')
